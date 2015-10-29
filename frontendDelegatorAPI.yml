@@ -1,0 +1,68 @@
+title: My Project
+
+# list of all views
+# NOTE: "head" is reserved and must not be used
+views:
+    - home
+    - events
+    - people
+    - about
+
+jQuery: 1.11.3
+
+# more to come
+language: php
+database_connector: mysqli
+
+# model name should be singular
+# default column type is string
+models:
+    user:
+        # optional. if not given 's' will be appended to the model name
+        -   plural: users
+        -
+            name:           name
+            type:           string
+            visibility:     private
+        -
+            name:           first_name
+            type:           string
+            visibility:     protected
+        -
+            name:           age
+            type:           integer
+    event:
+        -
+            name:   name
+        -
+            name:   begin
+        -
+            name:   end
+
+database:
+    domain:     localhost
+    user:       root
+    password:   ""
+    name:       test
+
+# in PHP all routes go to either api.php?route=ROUTE&... or api/ROUTE.php?...
+routes:
+    get:
+        get_route1:
+            first_name: string
+            last_name : string
+            percentage: float
+            age:        integer
+            valid:      boolean
+            numbers:    array
+            format:     json
+        get_route2:
+            action: string
+    post:
+        post_route1:
+            key:    string
+        post_route2:
+            data:   string
+
+controllers:
+    - TestController
