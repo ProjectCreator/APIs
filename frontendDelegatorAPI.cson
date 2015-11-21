@@ -1,0 +1,64 @@
+title: "My Project"
+creator: "django|cake|rails"
+database:
+    name: "db"
+    domain: "localhost"
+    user: "root"
+    password: ""
+    adapter: "mysql|postgres|sqlite"
+
+# model name should be singular
+# default column type is string
+models: [
+    {
+        name: "User"
+        # optional. default: escaped name + 's'
+        # table_name: ""
+        # NOTE: only the API (-> public methods) are defined here
+        methods:
+            static: []
+            instance: [
+                {
+                    name: "show_all"
+                    parameters: []
+                }
+            ]
+        # extends: "SuperModel"
+        # has: "Address"
+        # belongs_to: "UserGroup"
+    }
+    # ...
+]
+
+# optional. opportunity to extend methods defined in a model
+# default: for each model there is 1 controller that has a method for each controller method
+controllers: [
+    {
+        name: "UserController"
+        methods:
+            static: []
+            instance: [
+                {
+                    name: "show_all"
+                    parameters: []
+                    # optional. defaults to a route created by some simple algorithm
+                    route: "controller1/special_route/method1"
+                    request_type: "post"
+                }
+            ]
+    }
+]
+# optional. opportunity to reuse common views (or fragments, e.g. modals) in other views. this creates a graph that respects the order of outgoing edges
+# default: each controller method refers to 1 view
+views: [
+    {
+        name: "show_all"
+        uses: [
+            # list of fragment names
+            "ErrorModal"
+        ]
+    }
+    {
+        name: "ErrorModal"
+    }
+]
